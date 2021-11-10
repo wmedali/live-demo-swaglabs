@@ -2,7 +2,7 @@ const users = require("../fixtures/users");
 
 describe("Sauce Demo - Authentication Test Suite ", () => {
   beforeEach(() => {
-    cy.visit("https://www.saucedemo.com/");
+    cy.visit("/");
   });
 
   it(" SC1 - Valid username and password", () => {
