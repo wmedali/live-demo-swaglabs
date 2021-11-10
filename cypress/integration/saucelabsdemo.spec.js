@@ -6,17 +6,14 @@ describe("Sauce Demo - Authentication Test Suite ", () => {
   });
 
   it(" SC1 - Valid username and password", () => {
-    cy.get('[data-test="username"]').type(users[0].username);
-    cy.get('[data-test="password"]').type(users[0].password);
-    cy.get('[data-test="login-button"]').click();
+    cy.login(users[0].username, users[0].password);
+
     cy.url().should("include", "inventory");
     cy.get(".inventory_item").should("have.length", 6).and("be.visible");
   });
 
   it("SC2 - Valid username and invalid password", () => {
-    cy.get("[data-test=username]").type(users[1].username);
-    cy.get("[data-test=password]").type(users[1].password);
-    cy.get("[data-test=login-button]").click();
+    cy.login(users[1].username, users[1].password);
 
     cy.get("[data-test=error]")
       .should("be.visible")
@@ -24,9 +21,7 @@ describe("Sauce Demo - Authentication Test Suite ", () => {
   });
 
   it("SC3 - Invalid username and valid password", () => {
-    cy.get("[data-test=username]").type(users[2].username);
-    cy.get("[data-test=password]").type(users[2].password);
-    cy.get("[data-test=login-button]").click();
+    cy.login(users[2].username, users[2].password);
 
     cy.get("[data-test=error]")
       .should("be.visible")
@@ -34,12 +29,17 @@ describe("Sauce Demo - Authentication Test Suite ", () => {
   });
 
   it("SC4 - Locked out user", () => {
-    cy.get("[data-test=username]").type(users[3].username);
-    cy.get("[data-test=password]").type(users[3].password);
-    cy.get("[data-test=login-button]").click();
+    cy.login(users[3].username, users[3].password);
 
     cy.get("[data-test=error]")
       .should("be.visible")
       .and("include.text", "this user has been locked out");
+  });
+
+  it(" SC5 - Use Custom Commands", () => {
+    cy.login("standard_user", "secret_sauce");
+
+    cy.url().should("include", "inventory");
+    cy.get(".inventory_item").should("have.length", 6).and("be.visible");
   });
 });
