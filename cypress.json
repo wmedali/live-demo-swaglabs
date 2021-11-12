@@ -1,8 +1,8 @@
 {
-  "chromeWebSecurity": false,
-  "baseUrl": "https://www.saucedemo.com/",
-  "defaultCommandTimeout": 10000,
-  "integrationFolder": "cypress/tests",
-  "viewportHeight": 2436,
-  "viewportWidth": 1125
+    "chromeWebSecurity": false,
+    "baseUrl": "https://www.saucedemo.com/",
+    "defaultCommandTimeout": 10000,
+    "integrationFolder": "cypress/tests",
+    "viewportHeight": 2436,
+    "viewportWidth": 1125
 }
